@@ -33,13 +33,15 @@ app.use("/", userRouter);
 app.get("/", (req, res) => {
   res.send("Backend running on Vercel!");
 });
-//database connect before server
-// connectDB().then(() => {
-//   try {
-//     app.listen(process.env.PORT, () => {
-//       console.log(`Server running on ` + process.env.PORT);
-//     });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// });
+
+
+// Export for Vercel
+module.exports = app;
+
+// Local development server
+if (require.main === module) {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
