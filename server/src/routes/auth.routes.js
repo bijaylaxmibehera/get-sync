@@ -4,10 +4,12 @@ const User = require("../models/user.models");
 const validator = require("validator");
 const bcrypt = require("bcryptjs");
 const { validateSignupData } = require("../utils/validation");
+const connectDB = require("../config/database");
 
 //signup api for signing the user
 authRouter.post("/signup", async (req, res) => {
   try {
+    await connectDB(); 
     //Validate the data
     validateSignupData(req);
     const {
@@ -55,6 +57,7 @@ authRouter.post("/signup", async (req, res) => {
 
 authRouter.post("/login", async (req, res) => {
   try {
+    await connectDB(); 
     const { emailId, password } = req.body;
     if (!validator.isEmail(emailId)) {
       throw new Error("Invalid Email");

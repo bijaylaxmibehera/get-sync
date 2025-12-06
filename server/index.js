@@ -16,7 +16,7 @@ app.use(
   })
 );
 // connect DB once
-connectDB();
+// connectDB();
 
 //routes
 const authRouter = require("./src/routes/auth.routes");
@@ -38,8 +38,11 @@ app.get("/", (req, res) => {
 // Export for Vercel
 module.exports = app;
 
-// Local development server
+
+// Local development server ONLY
 if (require.main === module) {
+  const connectDB = require("./src/config/database");
+  connectDB(); 
   const PORT = process.env.PORT || 5000;
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
