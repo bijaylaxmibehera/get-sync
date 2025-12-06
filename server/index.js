@@ -6,15 +6,17 @@ const dotenv = require("dotenv");
 dotenv.config({});
 const cors = require("cors");
 
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-    credentials: true,
-  })
-);
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(
+  cors({
+    origin: "*",
+    credentials: true,
+  })
+);
+// connect DB once
+connectDB();
 
 //routes
 const authRouter = require("./src/routes/auth.routes");
