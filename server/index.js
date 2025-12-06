@@ -27,13 +27,17 @@ app.use("/", profileRouter);
 app.use("/", requestRouter);
 app.use("/", userRouter);
 
-//database connect before server
-connectDB().then(() => {
-  try {
-    app.listen(process.env.PORT, () => {
-      console.log(`Server running on ` + process.env.PORT);
-    });
-  } catch (error) {
-    console.log(error);
-  }
+
+app.get("/", (req, res) => {
+  res.send("Backend running on Vercel!");
 });
+//database connect before server
+// connectDB().then(() => {
+//   try {
+//     app.listen(process.env.PORT, () => {
+//       console.log(`Server running on ` + process.env.PORT);
+//     });
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
