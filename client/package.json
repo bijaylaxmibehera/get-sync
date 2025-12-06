@@ -1,0 +1,19 @@
+{
+  "name": "get-sync-frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bijaylaxmibehera/get-sync.git"
+  },
+  "author": "bijaylaxmi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bijaylaxmibehera/get-sync/issues"
+  },
+  "homepage": "https://github.com/bijaylaxmibehera/get-sync#readme"
+}
