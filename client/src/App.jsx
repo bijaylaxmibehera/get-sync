@@ -1,52 +1,40 @@
-import { useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./App.css";
+import Body from "./components/Body";
+import LandingPage from "./components/LandingPage";
+import Login from "./components/Login";
+import Profile from "./components/Profile";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
+import Feed from "./components/Feed";
+import Connections from "./components/Connections";
+import Request from "./components/Request";
+import Chat from "./components/Chat";
+import ProtectedRoutes from "./components/ProtectedRoutes";
 
 function App() {
   return (
     <>
-      <div className="navbar bg-base-300 shadow-sm">
-        <div className="flex-1">
-          <a className="btn btn-ghost text-xl">daisyUI</a>
-        </div>
-        <div className="flex gap-2">
-          <input
-            type="text"
-            placeholder="Search"
-            className="input input-bordered w-24 md:w-auto"
-          />
-          <div className="dropdown dropdown-end">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost btn-circle avatar"
-            >
-              <div className="w-10 rounded-full">
-                <img
-                  alt="Tailwind CSS Navbar component"
-                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                />
-              </div>
-            </div>
-            <ul
-              tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-            >
-              <li>
-                <a className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
-                </a>
-              </li>
-              <li>
-                <a>Settings</a>
-              </li>
-              <li>
-                <a>Logout</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <h1 className="text-3xl font-bold underline">This is home.</h1>
+      <Provider store={appStore}>
+        <BrowserRouter basename="/">
+          <Routes>
+            <Route element={<Body />}>
+              <Route path="/" element={<LandingPage />} />
+
+              <Route path="/login" element={<Login />} />
+
+              <Route element={<ProtectedRoutes />}>
+                <Route path="/feed" element={<Feed />} />
+                <Route path="/connections" element={<Connections />} />
+                <Route path="/request" element={<Request />} />
+
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/chat/:targetUserId" element={<Chat />} />
+              </Route>
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </Provider>
     </>
   );
 }
